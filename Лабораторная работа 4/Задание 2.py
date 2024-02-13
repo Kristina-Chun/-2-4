@@ -7,19 +7,19 @@ import json
 input_filename = "input.csv"
 output_filename = "output.json"
 
-def task() -> None:
-    data = []  # список для хранения записей
-
+def task():
     with open(input_filename) as csvfile:
-        lines = [line for line in csv.DictReader(csvfile)]
+        reader = csv.DictReader(csvfile)
+        row = list(reader)
+        
     with open(output_filename, 'w') as jsonfile:
-            json.dump(data, jsonfile, indent=4)
+        json.dump(row, jsonfile, indent=4)
 
 
 if __name__ == '__main__':
 
-    task()
+task()
 
-    with open(output_filename) as output_f:
-        for line in output_f:
-            print(line, end="")
+with open(output_filename) as output_f:
+    for line in output_f:
+        print(line, end="")
